@@ -33,5 +33,7 @@ public partial class Proizvod
 
     public virtual Proizvodjac? Proizvodjac { get; set; }
 
+    public virtual ICollection<StavkaKorpe> StavkaKorpes { get; set; } = new List<StavkaKorpe>();
+
     public virtual ICollection<StavkaPorudzbine> StavkaPorudzbines { get; set; } = new List<StavkaPorudzbine>();
 }

@@ -1,23 +1,16 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import type { Proizvod } from "../../app/models/proizvod";
 import { Divider, Grid, Typography, Table, TableContainer, TableBody, TableRow, TableCell, Grid2, Button, TextField } from "@mui/material";
+import { useFetchProizvodDetailsQuery } from "./CatalogApi";
 
 export default function ProizvodDetails() {
 
     const {id} = useParams<{id : string}>();
 
-    const [proizvod, setProizvod] = useState<Proizvod | null>(null);
-    const [loading, setLoading] = useState(true);
+    const{data, isLoading} = useFetchProizvodDetailsQuery(id ? +id : 0);
+   
+    if (isLoading || !data) return <h3>Ucitavanje...</h3>
 
-    useEffect(() => {
-        fetch(`https://localhost:5001/api/Proizvod/${id}`).then(response => response.json()).then(response => setProizvod(response.data))
-        .catch(error => console.log(error)).finally(() => setLoading(false));
-    }, [id])
-
-    if (loading) return <h3>Ucitavanje...</h3>
-
-    if (!proizvod) return <h3>Proizvod nije pronadjen</h3>
+    const proizvod = data.data;
 
     return (
         <Grid container spacing={6}>
@@ -25,7 +18,7 @@ export default function ProizvodDetails() {
                 <img src='http://picsum.photos/200' alt={proizvod.naziv} style={{width: '100%'}} />
             </Grid>
             <Grid item xs={6}>
-                <Typography variant='h3'>{proizvod.naziv}</Typography>
+                <Typography variant='h3'>{data.data.naziv}</Typography>
                 <Divider sx={{mb: 2}}/>
                 <Typography variant='h4' color='secondary'>{proizvod.cena} RSD</Typography>
                 <TableContainer>

@@ -16,6 +16,7 @@ builder.Services.AddScoped<IPorudzbinaService, PorudzbinaService>();
 builder.Services.AddScoped<IProizvodjacService, ProizvodjacService>();
 builder.Services.AddScoped<IProizvodService, ProizvodService>();
 builder.Services.AddScoped<IStavkaPorudzbineService, StavkaPorudzbineService>();
+builder.Services.AddScoped<IKorpaService, KorpaService>();
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddDbContext<SalonNamestajaErpContext>();
 

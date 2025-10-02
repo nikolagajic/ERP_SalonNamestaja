@@ -10,6 +10,7 @@ using ERP_SalonNamestaja.DTO.ProizvodjacDTO;
 using ERP_SalonNamestaja.DTO.StavkaPorudzbineDTO;
 using ERP_SalonNamestaja.DTO.PorudzbinaDTO;
 using ERP_SalonNamestaja.Models;
+using ERP_SalonNamestaja.DTO.StavkaKorpeDTO;
 
 namespace ERP_SalonNamestaja
 {
@@ -34,6 +35,9 @@ namespace ERP_SalonNamestaja
 
             CreateMap<StavkaPorudzbine, GetStavkaPorudzbineDto>();
             CreateMap<AddStavkaPorudzbineDto, StavkaPorudzbine>();
+
+            CreateMap<KorpaDto, Korpa>();
+            CreateMap<Korpa, KorpaDto>();
         }
     }
 }

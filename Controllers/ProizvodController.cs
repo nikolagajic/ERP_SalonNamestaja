@@ -27,7 +27,10 @@ namespace ERP_SalonNamestaja.Controllers
 
         [HttpGet("{id}")]
         public async Task<ActionResult<ServiceResponse<GetProizvodDto>>> GetById(int id) {
-            return Ok(await _ProizvodService.GetProizvodById(id));
+            var response = await _ProizvodService.GetProizvodById(id);
+            if (response.Data is null)
+               return NotFound(); 
+            return Ok(response);
         }
 
         [Authorize]

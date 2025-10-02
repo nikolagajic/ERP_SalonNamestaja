@@ -1,19 +1,17 @@
-import type { Proizvod } from "../../app/models/proizvod";
+import { useFetchProizvodQuery } from "./CatalogApi";
 import ProizvodList from "./ProizvodList";
-import { useState, useEffect } from "react";
 
 export default function Catalog(){
 
-    const[proizvodi, setProizvodi] = useState<Proizvod[]>([]);
+    const {data, isLoading} = useFetchProizvodQuery();
 
-    useEffect(() => {
-    fetch('https://localhost:5001/api/Proizvod').then(response => response.json()).then(data => setProizvodi(data.data))
-    }, [])
-
+    if(isLoading || !data) {
+        return <div>Učitavanje...</div>
+    }
+   
     return (
     <>
-        <ProizvodList proizvodi={proizvodi}></ProizvodList>    
-        
+        <ProizvodList proizvodi={data.data}></ProizvodList>     
     </>
     )
 }

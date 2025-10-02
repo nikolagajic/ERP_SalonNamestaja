@@ -20,10 +20,10 @@ namespace ERP_SalonNamestaja.Services
             _context= context;
         }
 
-        public async Task<ServiceResponse<List<GetProizvodDto>>> AddProizvod(AddProizvodDto novaProizvod)
+        public async Task<ServiceResponse<List<GetProizvodDto>>> AddProizvod(AddProizvodDto noviProizvod)
         {
             var response = new ServiceResponse<List<GetProizvodDto>>();
-            var Proizvod = _mapper.Map<Proizvod>(novaProizvod);
+            var Proizvod = _mapper.Map<Proizvod>(noviProizvod);
             _context.Proizvods.Add(Proizvod);
             await _context.SaveChangesAsync();
 

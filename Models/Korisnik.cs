@@ -25,6 +25,8 @@ public partial class Korisnik
 
     public byte[] PasswordSalt { get; set; } = null!;
 
+    public virtual ICollection<Korpa> Korpas { get; set; } = new List<Korpa>();
+
     public virtual ICollection<Porudzbina> Porudzbinas { get; set; } = new List<Porudzbina>();
 
     public virtual Uloga Uloga { get; set; } = null!;
